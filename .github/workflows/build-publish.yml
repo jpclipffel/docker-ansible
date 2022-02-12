@@ -19,14 +19,14 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ GITHUB_ACTOR }}
+          username: ${{ env.GITHUB_ACTOR }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to Github Registry
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ GITHUB_ACTOR }}
+          username: ${{ env.GITHUB_ACTOR }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build image and push to registries
@@ -35,5 +35,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ GITHUB_ACTOR }}/docker-ansible:latest 
-            ghcr.io/${{ GITHUB_ACTOR }}/docker-ansible:latest
+            ${{ env.GITHUB_ACTOR }}/docker-ansible:latest 
+            ghcr.io/${{ env.GITHUB_ACTOR }}/docker-ansible:latest

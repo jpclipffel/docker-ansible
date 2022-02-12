@@ -30,6 +30,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build image and push to registries
+        # For GitHub Packages, do not forget to allow the source repository
+        # to push (role: write) at github.com/users/{user}/packages/container/{name}/settings
         uses: docker/build-push-action@v2
         with:
           context: .
